@@ -1,6 +1,7 @@
 # chat_test
 
 A new Flutter project.
+채팅 with Firebase + mysql  
 
 ## Getting Started
 

@@ -1,3 +1,5 @@
+import 'package:chat_test/services/auth.dart';
+import 'package:chat_test/views/signin.dart';
 import 'package:flutter/material.dart';
 
 //1. stf
@@ -14,7 +16,25 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Messenger Clone App"),
+        actions: [
+          InkWell(
+            onTap: () {
+              AuthMethods().signOut().then((s) {
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (context) => SignIn()));
+              });
+            },
+            child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Icon(Icons.exit_to_app)),
+          )
+        ],
       ),
+      body: Container(child: Column(
+        children: [
+          Row(children: [],) //Row = to align widgets
+        ],
+      ),)
     );
   }
 }

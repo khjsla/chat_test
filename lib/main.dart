@@ -1,3 +1,5 @@
+import 'package:chat_test/services/auth.dart';
+import 'package:chat_test/views/home.dart';
 import 'package:chat_test/views/signin.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +22,16 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         //visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: SignIn(), //Change First Screen to Signin
+      home: FutureBuilder(
+        future: AuthMethods().getCurrentUser(),
+        builder: (context,AsyncSnapshot<dynamic> snapshot){
+          if(snapshot.hasData){
+            return Home();
+          }else{
+            return SignIn();
+          }
+        }
+      ), //Change First Screen to Signin
     );
   }
 }
